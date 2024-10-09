@@ -234,6 +234,45 @@ Hyperparameters har machine learning model ka ek zaroori hissa hote hain, kyunki
 ---
 ---
 # Hyperparameters in XGBoost
+XGBoost (Extreme Gradient Boosting) ek popular machine learning library hai jo boosting technique ka use karti hai, khas taur par classification aur regression tasks ke liye. Hyperparameters un settings ya configurations ko kehte hain jo model ki training process ko control karte hain. Inhe sahi tarah se set karna model ki performance ko kaafi behtar bana sakta hai.
+
+### XGBoost ke Hyperparameters
+
+XGBoost mein kai tarah ke hyperparameters hote hain, lekin kuch important hyperparameters ye hain:
+
+1. **n_estimators**:
+   - **Kya hai**: Yeh parameter batata hai kitne boosting rounds (ya decision trees) aap model mein add karna chahte hain.
+   - **Impact**: Zyada trees se model ki performance improve ho sakti hai, lekin yeh overfitting ka bhi risk badha sakta hai.
+
+2. **learning_rate (eta)**:
+   - **Kya hai**: Yeh parameter batata hai ki har boosting round mein model kitna seekhega. Iska value 0 se 1 ke beech hona chahiye.
+   - **Impact**: Chhota learning rate zyada rounds ki zaroorat padta hai, lekin isse performance achhi ho sakti hai. Bada learning rate jaldi training karta hai lekin overfitting ka risk bhi badhata hai.
+
+3. **max_depth**:
+   - **Kya hai**: Yeh parameter decision trees ki maximum depth ko control karta hai.
+   - **Impact**: Agar depth zyada hai, to model complex ho sakta hai aur overfitting ka risk badh sakta hai. Agar depth chhoti hai, to model simple rahega.
+
+4. **min_child_weight**:
+   - **Kya hai**: Yeh parameter batata hai ki minimum sum of instance weight (hessian) kya hona chahiye kisi leaf node ko banane ke liye.
+   - **Impact**: Zyada value se model conservative ho jata hai aur overfitting kam hota hai, lekin underfitting ka bhi risk ho sakta hai.
+
+5. **subsample**:
+   - **Kya hai**: Yeh parameter batata hai ki har boosting round mein kitne percentage training data ka use karna hai.
+   - **Impact**: Chhoti value se randomness badhta hai aur overfitting kam hota hai, lekin agar value bahut kam hai to model ki performance kharab ho sakti hai.
+
+6. **colsample_bytree**:
+   - **Kya hai**: Yeh parameter batata hai ki har tree ke liye kitne features ka random sample use karna hai.
+   - **Impact**: Iska chhota value randomness ko badhata hai, jo overfitting ko reduce karne mein madad karta hai.
+
+7. **gamma (min_split_loss)**:
+   - **Kya hai**: Yeh parameter batata hai ki ek node ko split karne ke liye minimum loss reduction kya honi chahiye.
+   - **Impact**: Iska zyada value model ko conservative banata hai aur overfitting ko reduce karta hai.
+
+### Summary
+
+Hyperparameters ko tune karna ek important step hai XGBoost model ki training mein, kyunki sahi hyperparameters ke saath model ki performance kaafi improve ho sakti hai. Hyperparameter tuning ke liye techniques jaise Grid Search, Random Search ya Bayesian Optimization ka use kiya ja sakta hai.
+
+In sab points se aapko XGBoost ke hyperparameters ka idea mil gaya hoga aur yeh samajh aaya hoga ki inhe kaise set karna hai. Agar aapko aur koi specific information chahiye to pooch sakte hain!
 
 #### **Learning Rate**
 - **Explanation**: The learning rate in XGBoost controls how quickly the model adapts to the problem. It scales the contribution of each tree added to the model during training.

@@ -4428,25 +4428,2168 @@ SELECT FORMAT(NOW(), 'yyyy-MM-dd') AS FormattedDate;
 - Yeh query current date ko specified format mein return karegi, jaise `2024-10-08`.
 
 ---
+---
+---
+
+# Structured Query Language (SQL)
+
+SQL (Structured Query Language) is a language used to interact with databases. It allows users to create, modify, and manage databases and the data stored within them. SQL provides several types of commands to accomplish various database-related tasks, which are categorized into five main groups: DDL (Data Definition Language), DQL (Data Query Language), DML (Data Manipulation Language), DCL (Data Control Language), and TCL (Transaction Control Language).
+
+### Categories of SQL Commands:
+![alt text](image-8.png)
+1. **DDL (Data Definition Language):**
+   DDL commands deal with the structure of the database objects. They are used to create, modify, or remove database objects like tables, indexes, views, and procedures. Importantly, DDL commands affect the schema of the database, not the data stored in it.
+
+2. **DQL (Data Query Language):**
+   DQL is mainly used to retrieve data from a database. The most common DQL command is `SELECT`, which allows users to query data from one or more tables.
+
+3. **DML (Data Manipulation Language):**
+   DML commands are used to manipulate data in the database. These include inserting, updating, and deleting data in tables.
+
+4. **DCL (Data Control Language):**
+   DCL commands control access to the data in the database. This includes granting or revoking permissions to users.
+
+5. **TCL (Transaction Control Language):**
+   TCL commands manage transactions in the database, ensuring data integrity and consistency. It allows for committing or rolling back transactions.
+
+---
+
+## DDL (Data Definition Language):
+
+**DDL** commands specifically focus on defining and managing the structure of database objects such as tables and views. Below is a breakdown of the most common DDL commands:
+
+#### 1. **CREATE**:
+The `CREATE` command is used to create a new database object, such as a table, view, index, or stored procedure. When creating a table, you need to define its columns and their data types.
+
+- **Syntax**:
+   ```sql
+   CREATE TABLE table_name (
+       column1 data_type,
+       column2 data_type,
+       ...
+   );
+   ```
+
+- **Example**:
+   ```sql
+   CREATE TABLE Employees (
+       EmpID INT,
+       FirstName VARCHAR(50),
+       LastName VARCHAR(50),
+       Salary DECIMAL(10, 2)
+   );
+   ```
+   This creates an "Employees" table with columns for employee ID, first name, last name, and salary.
+
+#### 2. **DROP**:
+The `DROP` command deletes an existing object from the database, such as a table or a view. It completely removes the object, including its structure and data.
+
+- **Syntax**:
+   ```sql
+   DROP TABLE table_name;
+   ```
+
+- **Example**:
+   ```sql
+   DROP TABLE Employees;
+   ```
+   This removes the "Employees" table and all data within it.
+
+#### 3. **ALTER**:
+The `ALTER` command is used to modify the structure of an existing database object. You can add, delete, or modify columns in a table using this command.
+
+- **Syntax**:
+   ```sql
+   ALTER TABLE table_name ADD COLUMN column_name data_type;
+   ALTER TABLE table_name DROP COLUMN column_name;
+   ```
+
+- **Example**:
+   ```sql
+   ALTER TABLE Employees ADD COLUMN Department VARCHAR(50);
+   ```
+   This adds a new column "Department" to the "Employees" table.
+
+#### 4. **TRUNCATE**:
+The `TRUNCATE` command removes all rows from a table but does not delete the table itself. It is faster than `DELETE` as it does not log individual row deletions.
+
+- **Syntax**:
+   ```sql
+   TRUNCATE TABLE table_name;
+   ```
+
+- **Example**:
+   ```sql
+   TRUNCATE TABLE Employees;
+   ```
+   This deletes all rows in the "Employees" table but keeps the table structure.
+
+#### 5. **COMMENT**:
+The `COMMENT` command is used to add comments to the data dictionary. These comments can describe a table or column and are useful for documentation.
+
+- **Syntax**:
+   ```sql
+   COMMENT ON TABLE table_name IS 'comment_text';
+   COMMENT ON COLUMN table_name.column_name IS 'comment_text';
+   ```
+
+- **Example**:
+   ```sql
+   COMMENT ON TABLE Employees IS 'Table storing employee details';
+   ```
+   This adds a comment to the "Employees" table.
+
+#### 6. **RENAME**:
+The `RENAME` command changes the name of an existing database object like a table or a view.
+
+- **Syntax**:
+   ```sql
+   RENAME TABLE old_table_name TO new_table_name;
+   ```
+
+- **Example**:
+   ```sql
+   RENAME TABLE Employees TO Staff;
+   ```
+   This renames the "Employees" table to "Staff."
+
+---
+
+### Summary of DDL Commands:
+
+| **Command** | **Description** | **Example** |
+|-------------|-----------------|-------------|
+| **CREATE**  | Creates a new database object like a table or view. | `CREATE TABLE Employees (...);` |
+| **DROP**    | Deletes an existing database object. | `DROP TABLE Employees;` |
+| **ALTER**   | Modifies the structure of an existing object. | `ALTER TABLE Employees ADD COLUMN ...;` |
+| **TRUNCATE**| Removes all rows from a table but keeps its structure. | `TRUNCATE TABLE Employees;` |
+| **COMMENT** | Adds comments to the data dictionary for documentation. | `COMMENT ON TABLE Employees IS ...;` |
+| **RENAME**  | Renames an existing database object. | `RENAME TABLE Employees TO Staff;` |
+
+These commands are essential for defining and modifying the structure of your database, ensuring that it is flexible and scalable as your data and requirements evolve.
+## DDL (Data Definition Language) - Hinglish Explanation
+
+DDL commands ka kaam database ke structure ko define aur manage karna hota hai, jaise tables, views, indexes, etc. Ye commands database ke objects ke structure ko create, modify, ya delete karne ke liye use kiye jaate hain.
+
+### 1. **CREATE**
+`CREATE` command ka use new database object banane ke liye hota hai, jaise ki table, view, ya index. Jab aap ek table banate ho, to aapko uske columns aur unka data type define karna hota hai.
+
+- **Syntax**:
+   ```sql
+   CREATE TABLE table_name (
+       column1 data_type,
+       column2 data_type,
+       ...
+   );
+   ```
+
+- **Example**:
+   ```sql
+   CREATE TABLE Employees (
+       EmpID INT,
+       FirstName VARCHAR(50),
+       LastName VARCHAR(50),
+       Salary DECIMAL(10, 2)
+   );
+   ```
+   Isse ek "Employees" naam ka table banega jisme `EmpID`, `FirstName`, `LastName`, aur `Salary` columns honge.
+
+---
+
+### 2. **DROP**
+`DROP` command se kisi bhi existing database object ko delete kiya ja sakta hai, jaise table ya view. Isse object ka structure aur data dono delete ho jaate hain.
+
+- **Syntax**:
+   ```sql
+   DROP TABLE table_name;
+   ```
+
+- **Example**:
+   ```sql
+   DROP TABLE Employees;
+   ```
+   Is command se "Employees" table aur uska data permanently delete ho jaayega.
+
+---
+
+### 3. **ALTER**
+`ALTER` command ka use kisi existing database object ka structure modify karne ke liye hota hai. Isse aap table me naye columns add, delete, ya modify kar sakte ho.
+
+- **Syntax**:
+   ```sql
+   ALTER TABLE table_name ADD COLUMN column_name data_type;
+   ALTER TABLE table_name DROP COLUMN column_name;
+   ```
+
+- **Example**:
+   ```sql
+   ALTER TABLE Employees ADD COLUMN Department VARCHAR(50);
+   ```
+   Isse "Employees" table me ek naya column "Department" add ho jaayega.
+
+---
+
+### 4. **TRUNCATE**
+`TRUNCATE` command ka use table ke saare rows delete karne ke liye hota hai, lekin table ka structure waisa ka waisa hi rehta hai. Ye `DELETE` se fast hota hai kyunki ye har row ko individually delete nahi karta.
+
+- **Syntax**:
+   ```sql
+   TRUNCATE TABLE table_name;
+   ```
+
+- **Example**:
+   ```sql
+   TRUNCATE TABLE Employees;
+   ```
+   Is command se "Employees" table ke saare records delete ho jaayenge, par table ka structure rahega.
+
+---
+
+### 5. **COMMENT**
+`COMMENT` command se aap table ya column par comment add kar sakte ho, jo documentation ke liye helpful hote hain.
+
+- **Syntax**:
+   ```sql
+   COMMENT ON TABLE table_name IS 'comment_text';
+   COMMENT ON COLUMN table_name.column_name IS 'comment_text';
+   ```
+
+- **Example**:
+   ```sql
+   COMMENT ON TABLE Employees IS 'Table storing employee details';
+   ```
+   Is command se "Employees" table par ek comment add kiya jaa raha hai.
+
+---
+
+### 6. **RENAME**
+`RENAME` command se kisi existing database object ka naam badla jaa sakta hai, jaise table ya view ka naam.
+
+- **Syntax**:
+   ```sql
+   RENAME TABLE old_table_name TO new_table_name;
+   ```
+
+- **Example**:
+   ```sql
+   RENAME TABLE Employees TO Staff;
+   ```
+   Isse "Employees" table ka naam badal kar "Staff" ho jaayega.
+
+---
+
+### Summary of DDL Commands:
+
+| **Command**   | **Description**                                    | **Example**                               |
+|---------------|----------------------------------------------------|-------------------------------------------|
+| **CREATE**    | Naya database object create karta hai.             | `CREATE TABLE Employees (...);`           |
+| **DROP**      | Existing database object ko delete karta hai.      | `DROP TABLE Employees;`                   |
+| **ALTER**     | Existing object ke structure ko modify karta hai.  | `ALTER TABLE Employees ADD COLUMN ...;`   |
+| **TRUNCATE**  | Saare rows ko delete karta hai, lekin structure rakhta hai. | `TRUNCATE TABLE Employees;`          |
+| **COMMENT**   | Data dictionary me comments add karta hai.         | `COMMENT ON TABLE Employees IS ...;`      |
+| **RENAME**    | Existing object ka naam badalta hai.               | `RENAME TABLE Employees TO Staff;`        |
+
+DDL commands ka main kaam database ke structure ko manage karna hota hai, taaki aap apne data ke hisaab se flexible aur scalable database bana sako.
+---
+---
+
+## DQL (Data Query Language)
+
+DQL commands are used to query and retrieve data from the database. The primary function of DQL is to fetch schema-based data by running queries on the database. The most commonly used DQL command is `SELECT`. When we run a `SELECT` query on a database, it fetches data from one or more tables and presents the results, often creating a temporary result set.
+
+DQL is a crucial part of SQL as it enables users to extract data, sort it, filter it, and apply conditions to retrieve specific information. This allows users to analyze and manipulate the data for their needs.
+
+#### Key Points of DQL:
+
+1. **SELECT**: DQL uses the `SELECT` statement to retrieve data.
+2. **Order and Filtering**: You can impose conditions (like `WHERE` or `ORDER BY`) on the retrieved data.
+3. **Temporary Table**: The result of the `SELECT` query is stored temporarily before being displayed or processed by the program.
+
+---
+
+### **DQL Command: `SELECT`**
+
+`SELECT` is the only command in DQL. It is used to retrieve data from one or more tables.
+
+#### Syntax:
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+
+- `column1, column2, ...`: Specify the columns you want to retrieve.
+- `table_name`: The name of the table from which the data is to be fetched.
+- `WHERE condition`: (Optional) Used to filter records based on a condition.
+
+#### Example 1:
+Fetching all records from the "Employees" table:
+```sql
+SELECT * FROM Employees;
+```
+This query will fetch all the columns and rows from the "Employees" table.
+
+#### Example 2:
+Fetching specific columns from the "Employees" table where salary is greater than 50000:
+```sql
+SELECT FirstName, LastName, Salary 
+FROM Employees 
+WHERE Salary > 50000;
+```
+This query will retrieve the `FirstName`, `LastName`, and `Salary` columns from the "Employees" table, but only for employees whose salary is greater than 50000.
+
+---
+
+### Summary:
+
+DQL revolves around the `SELECT` command, which allows you to:
+- Retrieve data from one or more tables.
+- Filter data using conditions (`WHERE`, `LIKE`, `BETWEEN`, etc.).
+- Sort data using the `ORDER BY` clause.
+- Perform operations like `JOIN` to retrieve related data from multiple tables.
+
+#### Important Clauses with `SELECT`:
+
+| **Clause**   | **Description**                                         |
+|--------------|---------------------------------------------------------|
+| **WHERE**    | Filters records based on a specific condition.           |
+| **ORDER BY** | Sorts the result set in ascending or descending order.   |
+| **GROUP BY** | Groups rows sharing the same values in specific columns. |
+| **HAVING**   | Filters groups based on a condition, used with `GROUP BY`.|
+| **JOIN**     | Combines rows from two or more tables based on related columns.|
+
+DQL, specifically the `SELECT` command, is the core of querying in SQL, providing the ability to extract meaningful insights from the database.
+
+## DQL (Data Query Language) - Hinglish Explanation
+
+DQL commands ka use database se data query aur retrieve karne ke liye hota hai. DQL ka primary function schema-based data ko fetch karna hai, jo database par queries run karke kiya jaata hai. Sabse common DQL command hai `SELECT`. Jab hum database par `SELECT` query run karte hain, to ye ek ya adhik tables se data ko fetch karta hai aur results ko present karta hai, aksar ek temporary result set banake.
+
+DQL SQL ka ek important hissa hai kyunki ye users ko data extract karne, sort karne, filter karne aur specific information retrieve karne ki ability deta hai. Isse users apne zaroorat ke hisaab se data ka analysis aur manipulation kar sakte hain.
+
+### Key Points of DQL:
+
+1. **SELECT**: DQL me data retrieve karne ke liye `SELECT` statement use hota hai.
+2. **Order and Filtering**: Aap retrieved data par conditions impose kar sakte hain (jaise `WHERE` ya `ORDER BY`).
+3. **Temporary Table**: `SELECT` query ka result temporarily store hota hai pehle dikhane ya process karne se pehle.
+
+---
+
+### **DQL Command: `SELECT`**
+
+`SELECT` DQL me ek hi command hai. Iska use ek ya adhik tables se data retrieve karne ke liye hota hai.
+
+#### Syntax:
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+
+- `column1, column2, ...`: Un columns ko specify karta hai jo aap retrieve karna chahte hain.
+- `table_name`: Wo table jisse data fetch kiya ja raha hai.
+- `WHERE condition`: (Optional) Records ko filter karne ke liye use hota hai based on a condition.
+
+#### Example 1:
+"Employees" table se saare records fetch karna:
+```sql
+SELECT * FROM Employees;
+```
+Is query se "Employees" table se saare columns aur rows fetch honge.
+
+#### Example 2:
+"Employees" table se specific columns ko fetch karna jahan salary 50000 se zyada ho:
+```sql
+SELECT FirstName, LastName, Salary 
+FROM Employees 
+WHERE Salary > 50000;
+```
+Is query se "Employees" table se `FirstName`, `LastName`, aur `Salary` columns retrieve honge, lekin sirf un employees ke liye jinki salary 50000 se zyada hai.
+
+---
+
+### Summary:
+
+DQL `SELECT` command ke ird-gird ghoomta hai, jo aapko:
+- Ek ya adhik tables se data retrieve karne ki suvidha deta hai.
+- Conditions (`WHERE`, `LIKE`, `BETWEEN`, etc.) ka use karke data filter karne ki suvidha deta hai.
+- `ORDER BY` clause ka use karke data sort karne ki suvidha deta hai.
+- `JOIN` operations perform karke multiple tables se related data retrieve karne ki suvidha deta hai.
+
+#### Important Clauses with `SELECT`:
+
+| **Clause**   | **Description**                                         |
+|--------------|---------------------------------------------------------|
+| **WHERE**    | Ek specific condition par records ko filter karta hai.  |
+| **ORDER BY** | Result set ko ascending ya descending order me sort karta hai. |
+| **GROUP BY** | Rows ko specific columns me same values share karne wale groups me rakhta hai. |
+| **HAVING**   | Groups ko ek condition par filter karta hai, jo `GROUP BY` ke sath use hota hai. |
+| **JOIN**     | Do ya adhik tables se related columns par rows ko combine karta hai. |
+
+DQL, khaaskar `SELECT` command, SQL me querying ka core hai, jo database se meaningful insights extract karne ki ability provide karta hai.
+
+---
+---
+
+## DML (Data Manipulation Language)
+
+DML commands are used to manipulate and manage data stored within a database. These commands allow users to insert, update, delete, and retrieve data from database tables. DML primarily focuses on manipulating the actual data within the tables, as opposed to modifying the structure (which is handled by DDL).
+
+DML commands interact with data and allow you to:
+1. Add new data into the database.
+2. Modify existing data.
+3. Delete data from the database.
+4. Retrieve specific data for use or reporting.
+
+---
+
+### Common DML Commands:
+
+1. **INSERT**: Inserts new data into the database.
+2. **UPDATE**: Updates existing data within the database.
+3. **DELETE**: Deletes records from the database.
+4. **MERGE**: Combines INSERT, UPDATE, and DELETE operations into a single command.
+5. **SELECT** (also part of DQL): Retrieves data from the database.
+
+---
+
+### 1. **INSERT**
+
+The `INSERT` command is used to add new rows of data to a table. You can either insert data into all the columns or specify particular columns where data should be inserted.
+
+#### Syntax:
+```sql
+INSERT INTO table_name (column1, column2, ...)
+VALUES (value1, value2, ...);
+```
+
+- **table_name**: The name of the table where data will be inserted.
+- **column1, column2, ...**: The names of the columns where you want to insert data.
+- **value1, value2, ...**: The actual values you want to insert into the columns.
+
+#### Example:
+Inserting a new employee into the "Employees" table:
+```sql
+INSERT INTO Employees (EmpID, FirstName, LastName, Salary)
+VALUES (101, 'John', 'Doe', 55000);
+```
+This will add a new row with the specified data to the "Employees" table.
+
+---
+
+### 2. **UPDATE**
+
+The `UPDATE` command is used to modify existing data in the table. You can update one or more rows by specifying a condition.
+
+#### Syntax:
+```sql
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+```
+
+- **SET**: Specifies the columns and their new values.
+- **WHERE**: Optional. If omitted, all rows will be updated, so it’s important to specify a condition to target specific rows.
+
+#### Example:
+Updating the salary of an employee with `EmpID = 101`:
+```sql
+UPDATE Employees
+SET Salary = 60000
+WHERE EmpID = 101;
+```
+This will update the salary of the employee with `EmpID` 101.
+
+---
+
+### 3. **DELETE**
+
+The `DELETE` command is used to remove rows from a table. Like `UPDATE`, you can specify a condition to delete specific rows. If no condition is provided, all rows in the table will be deleted.
+
+#### Syntax:
+```sql
+DELETE FROM table_name
+WHERE condition;
+```
+
+- **condition**: Optional. Specifies which rows to delete.
+
+#### Example:
+Deleting an employee with `EmpID = 101`:
+```sql
+DELETE FROM Employees
+WHERE EmpID = 101;
+```
+This will delete the row of the employee with `EmpID` 101.
+
+---
+
+### 4. **MERGE**
+
+The `MERGE` command allows you to perform `INSERT`, `UPDATE`, or `DELETE` in a single statement based on conditions. It is useful when you need to synchronize two tables.
+
+#### Syntax:
+```sql
+MERGE INTO target_table
+USING source_table
+ON condition
+WHEN MATCHED THEN
+    UPDATE SET column1 = value1, ...
+WHEN NOT MATCHED THEN
+    INSERT (column1, column2, ...) VALUES (value1, value2, ...);
+```
+
+#### Example:
+Merging data into the "Employees" table from a source table:
+```sql
+MERGE INTO Employees AS target
+USING NewEmployees AS source
+ON target.EmpID = source.EmpID
+WHEN MATCHED THEN
+    UPDATE SET target.Salary = source.Salary
+WHEN NOT MATCHED THEN
+    INSERT (EmpID, FirstName, LastName, Salary)
+    VALUES (source.EmpID, source.FirstName, source.LastName, source.Salary);
+```
+This command updates existing employee data if the `EmpID` matches or inserts new rows if no match is found.
+
+---
+
+### Summary of DML Commands:
+
+| **Command** | **Description**                                       | **Example**                                           |
+|-------------|-------------------------------------------------------|-------------------------------------------------------|
+| **INSERT**  | Adds new rows of data to a table.                     | `INSERT INTO Employees (...) VALUES (...);`           |
+| **UPDATE**  | Modifies existing data in the table.                  | `UPDATE Employees SET Salary = 60000 WHERE EmpID = 101;` |
+| **DELETE**  | Removes rows from the table.                          | `DELETE FROM Employees WHERE EmpID = 101;`            |
+| **MERGE**   | Combines insert, update, and delete operations.       | `MERGE INTO Employees ... USING NewEmployees ...;`    |
+
+DML commands provide the fundamental ability to manipulate and manage the actual data stored in the database, allowing users to keep the database up to date and retrieve relevant data when needed.
+
+## DML (Data Manipulation Language) - Hinglish Explanation
+
+DML commands ka use database me stored data ko manipulate aur manage karne ke liye hota hai. Ye commands users ko data insert, update, delete, aur retrieve karne ki suvidha deti hain. DML ka main focus tables ke andar actual data ko manipulate karna hai, na ki structure ko modify karna (jo DDL se hota hai).
+
+DML commands data ke sath interact karte hain aur aapko ye karne ki suvidha dete hain:
+1. Naya data database me add karna.
+2. Maujooda data ko modify karna.
+3. Database se data delete karna.
+4. Specific data ko reporting ya use ke liye retrieve karna.
+
+---
+
+### Common DML Commands:
+
+1. **INSERT**: Database me naya data insert karta hai.
+2. **UPDATE**: Database me maujooda data ko update karta hai.
+3. **DELETE**: Database se records ko delete karta hai.
+4. **MERGE**: INSERT, UPDATE, aur DELETE operations ko ek hi command me combine karta hai.
+5. **SELECT** (ye DQL ka hissa hai): Database se data ko retrieve karta hai.
+
+---
+
+### 1. **INSERT**
+
+`INSERT` command ka use table me nayi rows of data add karne ke liye hota hai. Aap ya to saare columns me data insert kar sakte hain ya specific columns specify kar sakte hain jahan data insert kiya jaana hai.
+
+#### Syntax:
+```sql
+INSERT INTO table_name (column1, column2, ...)
+VALUES (value1, value2, ...);
+```
+
+- **table_name**: Wo table jahan data insert kiya jaega.
+- **column1, column2, ...**: Un columns ke naam jahan aap data insert karna chahte hain.
+- **value1, value2, ...**: Actual values jo aap columns me insert karna chahte hain.
+
+#### Example:
+"Employees" table me naya employee insert karna:
+```sql
+INSERT INTO Employees (EmpID, FirstName, LastName, Salary)
+VALUES (101, 'John', 'Doe', 55000);
+```
+Ye command "Employees" table me specified data ke saath nayi row add karega.
+
+---
+
+### 2. **UPDATE**
+
+`UPDATE` command ka use table me maujooda data ko modify karne ke liye hota hai. Aap ek ya zyada rows ko update kar sakte hain by specifying a condition.
+
+#### Syntax:
+```sql
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+```
+
+- **SET**: Ye columns aur unke naye values ko specify karta hai.
+- **WHERE**: Optional hai. Agar ye omit kiya gaya, to saare rows update honge, isliye specific rows target karne ke liye condition specify karna zaroori hai.
+
+#### Example:
+`EmpID = 101` wale employee ki salary update karna:
+```sql
+UPDATE Employees
+SET Salary = 60000
+WHERE EmpID = 101;
+```
+Ye command `EmpID` 101 wale employee ki salary update karega.
+
+---
+
+### 3. **DELETE**
+
+`DELETE` command ka use table se rows ko remove karne ke liye hota hai. Jaise `UPDATE`, aap specific rows ko delete karne ke liye condition specify kar sakte hain. Agar koi condition nahi di gayi, to table ke saare rows delete ho jayenge.
+
+#### Syntax:
+```sql
+DELETE FROM table_name
+WHERE condition;
+```
+
+- **condition**: Optional hai. Ye specify karta hai ki kaunse rows delete karne hain.
+
+#### Example:
+`EmpID = 101` wale employee ko delete karna:
+```sql
+DELETE FROM Employees
+WHERE EmpID = 101;
+```
+Ye command `EmpID` 101 wale employee ka row delete karega.
+
+---
+
+### 4. **MERGE**
+
+`MERGE` command aapko ek hi statement me `INSERT`, `UPDATE`, ya `DELETE` perform karne ki suvidha deti hai based on conditions. Ye do tables ko synchronize karne ke liye useful hoti hai.
+
+#### Syntax:
+```sql
+MERGE INTO target_table
+USING source_table
+ON condition
+WHEN MATCHED THEN
+    UPDATE SET column1 = value1, ...
+WHEN NOT MATCHED THEN
+    INSERT (column1, column2, ...) VALUES (value1, value2, ...);
+```
+
+#### Example:
+"Employees" table me source table se data merge karna:
+```sql
+MERGE INTO Employees AS target
+USING NewEmployees AS source
+ON target.EmpID = source.EmpID
+WHEN MATCHED THEN
+    UPDATE SET target.Salary = source.Salary
+WHEN NOT MATCHED THEN
+    INSERT (EmpID, FirstName, LastName, Salary)
+    VALUES (source.EmpID, source.FirstName, source.LastName, source.Salary);
+```
+Ye command existing employee data ko update karega agar `EmpID` match hota hai, ya nayi rows insert karega agar koi match nahi milta.
+
+---
+
+### Summary of DML Commands:
+
+| **Command** | **Description**                                       | **Example**                                           |
+|-------------|-------------------------------------------------------|-------------------------------------------------------|
+| **INSERT**  | Table me nayi rows of data add karta hai.             | `INSERT INTO Employees (...) VALUES (...);`           |
+| **UPDATE**  | Table me maujooda data ko modify karta hai.           | `UPDATE Employees SET Salary = 60000 WHERE EmpID = 101;` |
+| **DELETE**  | Table se rows ko remove karta hai.                    | `DELETE FROM Employees WHERE EmpID = 101;`            |
+| **MERGE**   | Insert, update, aur delete operations ko combine karta hai. | `MERGE INTO Employees ... USING NewEmployees ...;`    |
+
+DML commands database me stored actual data ko manipulate aur manage karne ki fundamental ability dete hain, jo users ko database ko update rakhnay aur jab zaroorat ho to relevant data retrieve karne ki suvidha dete hain.
+
+---
+---
+
+## DCL (Data Control Language)
+
+DCL includes commands that are used to control access to data within a database. These commands primarily focus on the rights, permissions, and other controls associated with database users. The most commonly used DCL commands are **GRANT** and **REVOKE**.
+
+### Common DCL Commands:
+
+1. **GRANT**: This command is used to give specific privileges to users on database objects, allowing them to perform actions like SELECT, INSERT, UPDATE, or DELETE.
+
+2. **REVOKE**: This command is used to remove specific privileges from users, effectively taking away their access rights to perform certain actions on database objects.
+
+---
+
+### Important DCL Commands and Syntax:
+
+#### 1. **GRANT**
+
+The `GRANT` command allows a database administrator to grant specific privileges to users.
+
+**Syntax:**
+```sql
+GRANT privilege_type
+ON object_name
+TO user_name;
+```
+
+- **privilege_type**: The specific privilege to be granted (e.g., SELECT, INSERT, UPDATE).
+- **object_name**: The name of the database object (e.g., table, view) on which the privilege is being granted.
+- **user_name**: The user or role to whom the privilege is being granted.
+
+**Example:**
+Granting the SELECT privilege on the "Employees" table to a user named "John":
+```sql
+GRANT SELECT
+ON Employees
+TO John;
+```
+This command allows John to read data from the "Employees" table.
+
+---
+
+#### 2. **REVOKE**
+
+The `REVOKE` command removes previously granted privileges from users.
+
+**Syntax:**
+```sql
+REVOKE privilege_type
+ON object_name
+FROM user_name;
+```
+
+- **privilege_type**: The specific privilege to be revoked (e.g., SELECT, INSERT, UPDATE).
+- **object_name**: The name of the database object from which the privilege is being revoked.
+- **user_name**: The user or role from whom the privilege is being revoked.
+
+**Example:**
+Revoking the SELECT privilege on the "Employees" table from a user named "John":
+```sql
+REVOKE SELECT
+ON Employees
+FROM John;
+```
+This command removes John’s ability to read data from the "Employees" table.
+
+---
+
+### Summary of DCL Commands:
+
+| **Command** | **Description**                                      | **Example**                                          |
+|-------------|------------------------------------------------------|------------------------------------------------------|
+| **GRANT**   | Gives specific privileges to users on database objects.| `GRANT SELECT ON Employees TO John;`                |
+| **REVOKE**  | Removes specific privileges from users.               | `REVOKE SELECT ON Employees FROM John;`              |
+
+DCL commands are essential for managing access rights in a database, ensuring that only authorized users can perform specific actions on the data.
+
+## DCL (Data Control Language)
+
+DCL commands ka istemal database mein data ki access ko control karne ke liye hota hai. Ye commands mukhya roop se database users ke rights, permissions, aur dusre controls par focus karti hain. Sabse aam DCL commands hain **GRANT** aur **REVOKE**.
+
+### Common DCL Commands:
+
+1. **GRANT**: Ye command specific privileges ko users ko dene ke liye istemal hota hai, jisse wo actions jaise SELECT, INSERT, UPDATE, ya DELETE perform kar sakte hain.
+
+2. **REVOKE**: Ye command users se specific privileges ko hataane ke liye istemal hota hai, jisse unki access rights ko kuch actions perform karne se roka ja sake.
+
+---
+
+### Important DCL Commands aur Syntax:
+
+#### 1. **GRANT**
+
+`GRANT` command ek database administrator ko specific privileges users ko dene ki suvidha deta hai.
+
+**Syntax:**
+```sql
+GRANT privilege_type
+ON object_name
+TO user_name;
+```
+
+- **privilege_type**: Ye wo specific privilege hai jo diya ja raha hai (jaise SELECT, INSERT, UPDATE).
+- **object_name**: Ye wo database object ka naam hai (jaise table, view) jiske liye privilege diya ja raha hai.
+- **user_name**: Ye wo user ya role hai jise privilege diya ja raha hai.
+
+**Example:**
+"Employees" table par SELECT privilege grant karna user "John" ko:
+```sql
+GRANT SELECT
+ON Employees
+TO John;
+```
+Is command se John ko "Employees" table se data read karne ki permission milti hai.
+
+---
+
+#### 2. **REVOKE**
+
+`REVOKE` command un privileges ko hata deta hai jo pehle grant kiye gaye the.
+
+**Syntax:**
+```sql
+REVOKE privilege_type
+ON object_name
+FROM user_name;
+```
+
+- **privilege_type**: Ye wo specific privilege hai jo hataaya ja raha hai (jaise SELECT, INSERT, UPDATE).
+- **object_name**: Ye wo database object hai jisse privilege hataaya ja raha hai.
+- **user_name**: Ye wo user ya role hai jisse privilege hataaya ja raha hai.
+
+**Example:**
+"Employees" table se SELECT privilege ko user "John" se revoke karna:
+```sql
+REVOKE SELECT
+ON Employees
+FROM John;
+```
+Is command se John ki "Employees" table se data read karne ki permission hata di jaati hai.
+
+---
+
+### DCL Commands ka Summary:
+
+| **Command** | **Description**                                      | **Example**                                          |
+|-------------|------------------------------------------------------|------------------------------------------------------|
+| **GRANT**   | Users ko database objects par specific privileges dena.| `GRANT SELECT ON Employees TO John;`                |
+| **REVOKE**  | Users se specific privileges hataana.                | `REVOKE SELECT ON Employees FROM John;`              |
+
+DCL commands database mein access rights ko manage karne ke liye mahatvapurn hain, jisse sirf authorized users hi data par specific actions perform kar sakte hain.
+
+---
+---
+
+## TCL (Transaction Control Language)
+
+TCL commands are used to control transactions in a database. Transactions group a set of tasks into a single execution unit. Each transaction begins with a specific task and ends when all tasks in the group are successfully completed. If any task fails, the entire transaction fails.
+
+Thus, a transaction has only two outcomes: success or failure.
+
+### Common TCL Commands:
+
+1. **COMMIT**: This command is used to permanently save the changes made during a transaction. When you issue a `COMMIT`, all the changes made in the transaction are applied permanently to the database.
+
+2. **ROLLBACK**: This command is used to undo changes made in a transaction. If there is an error during the transaction, you can use the `ROLLBACK` command to revert all changes back to the previous state.
+
+3. **SAVEPOINT**: This command allows you to set a specific point within a transaction to which you can later roll back if needed.
+
+4. **SET TRANSACTION**: This command is used to set the properties of a transaction, such as the transaction isolation level.
+
+---
+
+### Important TCL Commands and Syntax:
+
+#### 1. **COMMIT**
+
+The `COMMIT` command is used to save the changes made in a transaction permanently to the database.
+
+**Syntax:**
+```sql
+COMMIT;
+```
+
+**Example:**
+Committing a transaction:
+```sql
+BEGIN TRANSACTION;
+UPDATE Employees SET Salary = Salary + 5000 WHERE EmpID = 101;
+COMMIT;
+```
+In this example, the salary update becomes permanently saved after the `COMMIT`.
+
+---
+
+#### 2. **ROLLBACK**
+
+The `ROLLBACK` command is used to undo changes made during a transaction.
+
+**Syntax:**
+```sql
+ROLLBACK;
+```
+
+**Example:**
+Rolling back a transaction:
+```sql
+BEGIN TRANSACTION;
+UPDATE Employees SET Salary = Salary + 5000 WHERE EmpID = 101;
+ROLLBACK;
+```
+In this example, if `ROLLBACK` is executed, the salary update will be undone.
+
+---
+
+#### 3. **SAVEPOINT**
+
+The `SAVEPOINT` command allows you to set a specific point within a transaction.
+
+**Syntax:**
+```sql
+SAVEPOINT savepoint_name;
+```
+
+**Example:**
+Setting a savepoint in a transaction:
+```sql
+BEGIN TRANSACTION;
+UPDATE Employees SET Salary = Salary + 5000 WHERE EmpID = 101;
+SAVEPOINT sp1;
+UPDATE Employees SET Salary = Salary + 3000 WHERE EmpID = 102;
+ROLLBACK TO sp1;
+COMMIT;
+```
+In this example, if you execute `ROLLBACK TO sp1`, the salary update for `EmpID = 102` will be undone, but the update for `EmpID = 101` will remain.
+
+---
+
+### Summary of TCL Commands:
+
+| **Command**          | **Description**                                       | **Example**                                          |
+|----------------------|-------------------------------------------------------|------------------------------------------------------|
+| **COMMIT**           | Permanently saves the changes made in a transaction. | `COMMIT;`                                           |
+| **ROLLBACK**         | Undoes changes made during a transaction.             | `ROLLBACK;`                                         |
+| **SAVEPOINT**        | Sets a specific point within a transaction.           | `SAVEPOINT sp1;`                                   |
+| **SET TRANSACTION**  | Sets properties of a transaction.                     | `SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;`    |
+
+TCL commands control the execution of transactions, ensuring data integrity and consistency within the database.
+
+## TCL (Transaction Control Language)(Hinglish)
+
+TCL commands ka istemal database transactions ko control karne ke liye hota hai. Transactions ek group of tasks ko ek single execution unit mein group karte hain. Har transaction ek specific task se shuru hota hai aur tab khatam hota hai jab is group ke saare tasks safalta se complete ho jaate hain. Agar kisi bhi task mein failure hota hai, toh poora transaction fail ho jaata hai.
+
+Isliye, ek transaction ke sirf do results hote hain: success ya failure. 
+
+### Common TCL Commands:
+
+1. **COMMIT**: Is command ka istemal transaction ko permanently save karne ke liye hota hai. Jab aap `COMMIT` karte hain, tab transaction ke sabhi changes database mein permanently apply ho jaate hain.
+
+2. **ROLLBACK**: Ye command transaction ko undo karne ke liye istemal hota hai. Agar transaction ke dauran koi error hota hai, toh `ROLLBACK` command ke zariye aap sabhi changes ko pehle waale state mein laa sakte hain.
+
+3. **SAVEPOINT**: Ye command ek specific point par transaction ko save karne ke liye istemal hota hai. Aap is point par future mein `ROLLBACK` kar sakte hain agar zarurat padti hai.
+
+4. **SET TRANSACTION**: Is command ka istemal transaction ke properties ko set karne ke liye hota hai, jaise transaction isolation level.
+
+---
+
+### Important TCL Commands aur Syntax:
+
+#### 1. **COMMIT**
+
+`COMMIT` command ka istemal transaction ke changes ko database mein permanently save karne ke liye hota hai.
+
+**Syntax:**
+```sql
+COMMIT;
+```
+
+**Example:**
+Transaction ko commit karna:
+```sql
+BEGIN TRANSACTION;
+UPDATE Employees SET Salary = Salary + 5000 WHERE EmpID = 101;
+COMMIT;
+```
+Is example mein, salary ka update `COMMIT` hone ke baad permanently save hota hai.
+
+---
+
+#### 2. **ROLLBACK**
+
+`ROLLBACK` command ka istemal transaction ko undo karne ke liye hota hai.
+
+**Syntax:**
+```sql
+ROLLBACK;
+```
+
+**Example:**
+Transaction ko rollback karna:
+```sql
+BEGIN TRANSACTION;
+UPDATE Employees SET Salary = Salary + 5000 WHERE EmpID = 101;
+ROLLBACK;
+```
+Is example mein, agar `ROLLBACK` hota hai, toh salary ka update undo ho jaata hai.
+
+---
+
+#### 3. **SAVEPOINT**
+
+`SAVEPOINT` command ka istemal transaction ke beech ek specific point ko save karne ke liye hota hai.
+
+**Syntax:**
+```sql
+SAVEPOINT savepoint_name;
+```
+
+**Example:**
+Transaction mein savepoint set karna:
+```sql
+BEGIN TRANSACTION;
+UPDATE Employees SET Salary = Salary + 5000 WHERE EmpID = 101;
+SAVEPOINT sp1;
+UPDATE Employees SET Salary = Salary + 3000 WHERE EmpID = 102;
+ROLLBACK TO sp1;
+COMMIT;
+```
+Is example mein, agar aap `ROLLBACK TO sp1` karte hain, toh `EmpID = 102` ka salary update undo ho jaata hai, lekin `EmpID = 101` ka update save rahega.
+
+#### 4. BEGIN TRANSACTION
+
+This command initiates a new transaction. It can optionally include a transaction name for easier identification.
+Example:
+```sql
+
+BEGIN TRANSACTION myTransaction;
+```
+---
+
+### Summary of TCL Commands:
+
+| **Command**    | **Description**                                   | **Example**                                          |
+|----------------|---------------------------------------------------|------------------------------------------------------|
+| **COMMIT**     | Transaction ke changes ko permanently save karta hai.| `COMMIT;`                                           |
+| **ROLLBACK**   | Transaction ko undo karta hai.                   | `ROLLBACK;`                                         |
+| **SAVEPOINT**  | Transaction mein ek specific point ko save karta hai.| `SAVEPOINT sp1;`                                   |
+| **SET TRANSACTION** | Transaction ke properties ko set karta hai.  | `SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;`    |
+
+TCL commands transactions ki execution ko control karte hain, jisse aapke data ki integrity aur consistency bani rahe.
+
+---
+---
+---
+
+# Types of SQL Data Types:
+
+| **Category**          | **Data Type**   | **Description**                                                                                  | **Storage Size**                |
+|-----------------------|------------------|--------------------------------------------------------------------------------------------------|----------------------------------|
+| **Numeric**           | INT              | Whole numbers                                                                                   | 4 bytes                          |
+|                       | SMALLINT         | Smaller whole numbers                                                                           | 2 bytes                          |
+|                       | TINYINT          | Very small whole numbers                                                                        | 1 byte                           |
+|                       | BIGINT           | Large whole numbers                                                                              | 8 bytes                          |
+|                       | DECIMAL/NUMERIC  | Exact numeric values with fixed decimal points                                                  | Varies based on precision        |
+|                       | FLOAT            | Approximate numeric values with floating decimal points                                         | 4 bytes (single) / 8 bytes (double) |
+|                       | REAL             | Similar to FLOAT with single precision                                                          | 4 bytes                          |
+| **Character**         | CHAR(n)         | Fixed-length character string                                                                    | n bytes                          |
+|                       | VARCHAR(n)      | Variable-length character string                                                                 | Actual length + 1 or 2 bytes     |
+|                       | TEXT             | Large amounts of text data (up to 2GB)                                                          | Variable                         |
+| **Date/Time**        | DATE             | Stores date values (year, month, day)                                                          | 3 bytes                          |
+|                       | TIME             | Stores time values (hours, minutes, seconds)                                                   | 3 bytes                          |
+|                       | DATETIME         | Stores both date and time values                                                                | 8 bytes                          |
+|                       | TIMESTAMP        | Stores date and time values, often for tracking changes                                          | 8 bytes                          |
+|                       | INTERVAL         | Stores a time interval (difference between two timestamps)                                       | Varies                           |
+| **Binary**           | BINARY(n)       | Fixed-length binary data                                                                         | n bytes                          |
+|                       | VARBINARY(n)    | Variable-length binary data                                                                       | Actual length + 1 or 2 bytes     |
+|                       | BLOB             | Large binary objects (up to 2GB)                                                                 | Variable                         |
+| **Other**            | BOOLEAN          | Stores Boolean values (true/false)                                                               | 1 byte (or varies by database)   |
+|                       | ENUM             | A string object with a value chosen from a list of permitted values                             | Varies                           |
+|                       | SET              | A string object that can have zero or more values chosen from a list of permitted values        | Varies                           |
+|                       | JSON             | Stores JSON (JavaScript Object Notation) data                                                    | Variable                         |
 
 
+Here’s a detailed explanation of various SQL data types, categorized into several groups, including numeric, character, date/time, binary, and other data types.
+
+### 1. Numeric Data Types
+Numeric data types are used to store numerical values.
+
+#### a. INT (or INTEGER)
+- **Description:** Stores whole numbers without a decimal point.
+- **Storage Size:** 4 bytes.
+- **Range:** -2,147,483,648 to 2,147,483,647.
+- **Use Case:** Ideal for counting items, like the number of users or transactions.
+
+#### b. SMALLINT
+- **Description:** Stores smaller whole numbers.
+- **Storage Size:** 2 bytes.
+- **Range:** -32,768 to 32,767.
+- **Use Case:** Useful for storing small integers, such as age or small counts.
+
+#### c. TINYINT
+- **Description:** Stores very small whole numbers.
+- **Storage Size:** 1 byte.
+- **Range:** 0 to 255 (or -128 to 127 if signed).
+- **Use Case:** Suitable for flags (e.g., isActive) or small enumerations.
+
+#### d. BIGINT
+- **Description:** Stores large whole numbers.
+- **Storage Size:** 8 bytes.
+- **Range:** -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807.
+- **Use Case:** Ideal for large counts, such as population statistics or financial transactions.
+
+#### e. DECIMAL (or NUMERIC)
+- **Description:** Stores exact numeric values with fixed decimal points. Useful for financial calculations where precision is critical.
+- **Syntax:** `DECIMAL(p, s)` where:
+  - **p:** Precision (total number of digits).
+  - **s:** Scale (number of digits to the right of the decimal point).
+- **Storage Size:** Varies based on precision.
+- **Use Case:** Perfect for currency and fixed-point calculations.
+
+#### f. FLOAT
+- **Description:** Stores approximate numeric values with floating decimal points. It is used for scientific calculations where precision is less critical.
+- **Storage Size:** 4 bytes (single precision) or 8 bytes (double precision).
+- **Range:** Varies based on precision.
+- **Use Case:** Useful for storing measurements, such as temperature or weight.
+
+#### g. REAL
+- **Description:** Similar to FLOAT but specifically for single precision floating-point numbers.
+- **Storage Size:** 4 bytes.
+- **Use Case:** Often used for applications requiring less precision than FLOAT.
+
+---
+
+### 2. Character Data Types
+Character data types are used to store text strings.
+
+#### a. CHAR(n)
+- **Description:** Fixed-length character string. If the input is shorter than n, it is padded with spaces.
+- **Storage Size:** n bytes (where n is the length).
+- **Use Case:** Suitable for storing strings of a consistent length, like postal codes or phone numbers.
+
+#### b. VARCHAR(n)
+- **Description:** Variable-length character string. Only the actual length is stored plus an additional byte or two for length information.
+- **Storage Size:** Actual length of the string + 1 or 2 bytes.
+- **Use Case:** Ideal for strings of varying lengths, such as names or addresses.
+
+#### c. TEXT
+- **Description:** Used to store large amounts of text data (up to 2GB).
+- **Storage Size:** Variable, depending on the length of the text.
+- **Use Case:** Suitable for long text, such as descriptions or articles.
+
+---
+
+### 3. Date and Time Data Types
+Date and time data types are used to store date and time values.
+
+#### a. DATE
+- **Description:** Stores date values (year, month, day).
+- **Storage Size:** 3 bytes.
+- **Format:** `YYYY-MM-DD`.
+- **Use Case:** Suitable for storing birthdates, event dates, etc.
+
+#### b. TIME
+- **Description:** Stores time values (hours, minutes, seconds).
+- **Storage Size:** 3 bytes.
+- **Format:** `HH:MM:SS`.
+- **Use Case:** Useful for storing time without a date, like event durations.
+
+#### c. DATETIME
+- **Description:** Stores both date and time values.
+- **Storage Size:** 8 bytes.
+- **Format:** `YYYY-MM-DD HH:MM:SS`.
+- **Use Case:** Perfect for logging timestamps of events.
+
+#### d. TIMESTAMP
+- **Description:** Stores date and time values, often used for tracking changes and recording when a record was created or updated.
+- **Storage Size:** 8 bytes.
+- **Format:** `YYYY-MM-DD HH:MM:SS`.
+- **Use Case:** Useful for audit trails and version control.
+
+#### e. INTERVAL
+- **Description:** Stores a time interval (difference between two timestamps).
+- **Storage Size:** Varies based on the precision and type of interval.
+- **Use Case:** Useful for calculations like age or duration.
+
+---
+
+### 4. Binary Data Types
+Binary data types are used to store binary data, such as images or files.
+
+#### a. BINARY(n)
+- **Description:** Fixed-length binary data. If the input is shorter than n, it is padded with zero bytes.
+- **Storage Size:** n bytes.
+- **Use Case:** Suitable for storing binary data of a fixed size, such as hashes or fixed-length encoded data.
+
+#### b. VARBINARY(n)
+- **Description:** Variable-length binary data. Only the actual length is stored plus an additional byte or two for length information.
+- **Storage Size:** Actual length of the binary data + 1 or 2 bytes.
+- **Use Case:** Ideal for storing images or files of varying sizes.
+
+#### c. BLOB
+- **Description:** Used to store large binary objects (up to 2GB), such as images, videos, or any binary data.
+- **Storage Size:** Variable, depending on the size of the binary data.
+- **Use Case:** Perfect for multimedia files and large data objects.
+
+---
+
+### 5. Other Data Types
+
+#### a. BOOLEAN
+- **Description:** Stores Boolean values (true/false).
+- **Storage Size:** Typically 1 byte (or varies by database).
+- **Use Case:** Useful for fields that require binary states, such as flags or options.
+
+#### b. ENUM
+- **Description:** A string object with a value chosen from a list of permitted values. Each value is a string and can be compared.
+- **Use Case:** Useful for fields that have a fixed set of possible values, such as status indicators (e.g., "active", "inactive").
+
+#### c. SET
+- **Description:** A string object that can have zero or more values, each of which must be chosen from a predefined list of permitted values.
+- **Use Case:** Suitable for fields that can have multiple options selected, like tags or categories.
+
+#### d. JSON
+- **Description:** Stores JSON (JavaScript Object Notation) data. Allows the storage of structured data in a text format.
+- **Use Case:** Useful for semi-structured data storage, especially in applications that require dynamic schema.
+
+---
+Yeh raha SQL data types ka detailed explanation, jo alag-alag groups mein categorize kiya gaya hai, jaise numeric, character, date/time, binary, aur other data types.
+
+### 1. Numeric Data Types
+Numeric data types ka istemal numerical values ko store karne ke liye hota hai.
+
+#### a. INT (ya INTEGER)
+- **Description:** Whole numbers ko store karta hai bina decimal point ke.
+- **Storage Size:** 4 bytes.
+- **Range:** -2,147,483,648 se lekar 2,147,483,647 tak.
+- **Use Case:** Items count karne ke liye, jaise users ya transactions ki sankhya.
+
+#### b. SMALLINT
+- **Description:** Chhote whole numbers ko store karta hai.
+- **Storage Size:** 2 bytes.
+- **Range:** -32,768 se lekar 32,767 tak.
+- **Use Case:** Chhoti integers ke liye, jaise age ya chhoti counts.
+
+#### c. TINYINT
+- **Description:** Bahut chhote whole numbers ko store karta hai.
+- **Storage Size:** 1 byte.
+- **Range:** 0 se 255 (ya signed case mein -128 se 127).
+- **Use Case:** Flags (jaise isActive) ya chhoti enumerations ke liye.
+
+#### d. BIGINT
+- **Description:** Bade whole numbers ko store karta hai.
+- **Storage Size:** 8 bytes.
+- **Range:** -9,223,372,036,854,775,808 se lekar 9,223,372,036,854,775,807 tak.
+- **Use Case:** Badi counts ke liye, jaise population statistics ya financial transactions.
+
+#### e. DECIMAL (ya NUMERIC)
+- **Description:** Exact numeric values ko fixed decimal points ke saath store karta hai. Yeh financial calculations ke liye useful hai.
+- **Syntax:** `DECIMAL(p, s)` jahan:
+  - **p:** Precision (total number of digits).
+  - **s:** Scale (decimal ke baad ke digits ki sankhya).
+- **Storage Size:** Precision ke hisaab se vary karta hai.
+- **Use Case:** Currency aur fixed-point calculations ke liye.
+
+#### f. FLOAT
+- **Description:** Approximate numeric values ko floating decimal points ke saath store karta hai. Scientific calculations ke liye istemal hota hai.
+- **Storage Size:** 4 bytes (single precision) ya 8 bytes (double precision).
+- **Range:** Precision ke hisaab se vary karta hai.
+- **Use Case:** Measurements (jaise temperature ya weight) store karne ke liye useful.
+
+#### g. REAL
+- **Description:** FLOAT ki tarah hi hai par single precision ke liye.
+- **Storage Size:** 4 bytes.
+- **Use Case:** Aise applications ke liye istemal hota hai jahan precision zyada nahi chahiye.
+
+---
+
+### 2. Character Data Types
+Character data types ka istemal text strings ko store karne ke liye hota hai.
+
+#### a. CHAR(n)
+- **Description:** Fixed-length character string. Agar input chhota ho toh spaces se pad kiya jata hai.
+- **Storage Size:** n bytes (jahan n length hai).
+- **Use Case:** Consistent length ke strings store karne ke liye, jaise postal codes ya phone numbers.
+
+#### b. VARCHAR(n)
+- **Description:** Variable-length character string. Actual length ko store kiya jata hai plus length information ke liye ek ya do additional bytes.
+- **Storage Size:** Actual string ka length + 1 ya 2 bytes.
+- **Use Case:** Varying lengths ke strings ke liye, jaise names ya addresses.
+
+#### c. TEXT
+- **Description:** Badi text data (up to 2GB) store karne ke liye istemal hota hai.
+- **Storage Size:** Variable, text ki length ke hisaab se.
+- **Use Case:** Long text ke liye, jaise descriptions ya articles.
+
+---
+
+### 3. Date and Time Data Types
+Date aur time data types ka istemal date aur time values ko store karne ke liye hota hai.
+
+#### a. DATE
+- **Description:** Date values (year, month, day) ko store karta hai.
+- **Storage Size:** 3 bytes.
+- **Format:** `YYYY-MM-DD`.
+- **Use Case:** Birthdates, event dates, etc. store karne ke liye.
+
+#### b. TIME
+- **Description:** Time values (hours, minutes, seconds) ko store karta hai.
+- **Storage Size:** 3 bytes.
+- **Format:** `HH:MM:SS`.
+- **Use Case:** Time ko bina date ke store karne ke liye, jaise event durations.
+
+#### c. DATETIME
+- **Description:** Dono date aur time values ko store karta hai.
+- **Storage Size:** 8 bytes.
+- **Format:** `YYYY-MM-DD HH:MM:SS`.
+- **Use Case:** Events ke timestamps ko log karne ke liye.
+
+#### d. TIMESTAMP
+- **Description:** Date aur time values ko store karta hai, aksar changes track karne ke liye istemal hota hai.
+- **Storage Size:** 8 bytes.
+- **Format:** `YYYY-MM-DD HH:MM:SS`.
+- **Use Case:** Audit trails aur version control ke liye useful.
+
+#### e. INTERVAL
+- **Description:** Time interval ko store karta hai (do timestamps ke beech ka difference).
+- **Storage Size:** Precision aur interval type ke hisaab se vary karta hai.
+- **Use Case:** Age ya duration jaise calculations ke liye.
+
+---
+
+### 4. Binary Data Types
+Binary data types ka istemal binary data, jaise images ya files, ko store karne ke liye hota hai.
+
+#### a. BINARY(n)
+- **Description:** Fixed-length binary data. Agar input chhota ho toh zero bytes se pad kiya jata hai.
+- **Storage Size:** n bytes.
+- **Use Case:** Fixed size ka binary data store karne ke liye, jaise hashes ya fixed-length encoded data.
+
+#### b. VARBINARY(n)
+- **Description:** Variable-length binary data. Actual length ko store kiya jata hai plus length information ke liye ek ya do additional bytes.
+- **Storage Size:** Actual binary data ka length + 1 ya 2 bytes.
+- **Use Case:** Images ya files of varying sizes ko store karne ke liye.
+
+#### c. BLOB
+- **Description:** Large binary objects (up to 2GB) ko store karne ke liye istemal hota hai, jaise images, videos, ya koi bhi binary data.
+- **Storage Size:** Variable, binary data ke size ke hisaab se.
+- **Use Case:** Multimedia files aur large data objects ke liye perfect.
+
+---
+
+### 5. Other Data Types
+
+#### a. BOOLEAN
+- **Description:** Boolean values (true/false) ko store karta hai.
+- **Storage Size:** Aam tor par 1 byte (ya database ke hisaab se vary karta hai).
+- **Use Case:** Binary states, jaise flags ya options ke liye useful.
+
+#### b. ENUM
+- **Description:** Ek string object hai jisme ek value permitted values ki list se choose ki jati hai.
+- **Use Case:** Fields ke liye jo fixed set of possible values rakhte hain, jaise status indicators (e.g., "active", "inactive").
+
+#### c. SET
+- **Description:** Ek string object hai jo zero ya zyada values le sakta hai, jo ki predefined list se choose ki jati hain.
+- **Use Case:** Fields ke liye jo multiple options select karne ki ijaazat dete hain, jaise tags ya categories.
+
+#### d. JSON
+- **Description:** JSON (JavaScript Object Notation) data ko store karta hai. Yeh structured data ko text format mein store karne ki ijaazat deta hai.
+- **Use Case:** Semi-structured data storage ke liye useful, khaas karke aise applications mein jo dynamic schema chahte hain.
+
+---
 
 
+# Joins
 
+Sure! Here’s an in-depth exploration of joins in SQL, including detailed explanations, use cases, and examples for each type of join.
 
+## Displaying Data from Multiple Tables Using Joins
 
+In relational databases, data is structured into tables, which can be related to each other through **foreign keys** (the columns in one table that reference primary keys in another table). **Joins** are SQL operations that combine rows from two or more tables based on related columns, enabling you to retrieve meaningful information across those tables.
 
+![alt text](image-9.png)
 
+### 1. Types of Joins
 
+#### 1.1. Natural Join
 
+- **Definition**: A **natural join** automatically combines rows from two tables based on columns with the same name and compatible data types. It effectively eliminates duplicate columns in the result set.
+- **Use Case**: Natural joins are useful when you have tables with common attributes, and you want to merge them based on those attributes without explicitly specifying the join condition.
+- **Example**:
+    ```sql
+    SELECT E.first_name AS NAME, D.department_name AS DNAME
+    FROM employees E NATURAL JOIN departments D;
+    ```
+    - **Output**:
+        ```
+        FIRST_NAME DNAME
+        ----------- ------
+        MILLER     DEPT 1
+        JOHN       DEPT 1
+        MARTIN     DEPT 2
+        EDWIN      DEPT 2
+        ```
 
+- **Limitations**:
+  - Cannot use LOB (Large Object) columns.
+  - Columns involved in the join cannot be qualified by a table name or alias.
+  
+#### 1.2. Explicit Join with ON Clause
 
+- **Definition**: An explicit join, often referred to as an **inner join**, allows you to specify the join condition using the `ON` clause, explicitly indicating which columns to join.
+- **Use Case**: This is beneficial when you need more control over the join conditions, especially if the column names differ or if you want to join on multiple columns.
+- **Example**:
+    ```sql
+    SELECT E.first_name AS NAME, D.department_name AS DNAME
+    FROM employees E JOIN departments D
+    ON (E.department_id = D.department_id);
+    ```
 
+### 2. Using Clause
 
+- **Definition**: The `USING` clause allows you to specify the common column(s) used for the join explicitly.
+- **Use Case**: It simplifies the syntax when the joining columns share the same name in both tables.
+- **Example**:
+    ```sql
+    SELECT E.first_name AS NAME, D.department_name AS DNAME
+    FROM employees E JOIN departments D
+    USING (department_id);
+    ```
 
+### 3. Self-Join
 
+- **Definition**: A **self-join** occurs when a table is joined to itself. This is useful for querying hierarchical data within a single table, such as employee-manager relationships.
+- **Use Case**: To find related data within the same table, such as identifying employees and their managers.
+- **Example**:
+    ```sql
+    SELECT e1.first_name AS Manager, e2.first_name AS Employee
+    FROM employees e1 JOIN employees e2
+    ON (e1.employee_id = e2.manager_id)
+    ORDER BY e2.manager_id DESC;
+    ```
+    - **Explanation**: Here, `e1` represents managers and `e2` represents employees. The query matches each employee to their manager by joining the table on `manager_id`.
 
+### 4. Non-Equijoins
 
+- **Definition**: A **non-equality join** is used when the joining condition involves comparisons other than equality. This can be useful for ranges or when checking values against minimum or maximum thresholds.
+- **Use Case**: For instance, to find salary ranges where employees fall within certain pay grades.
+- **Example**:
+    ```sql
+    SELECT E.first_name,
+           J.job_hisal,
+           J.job_losal,
+           E.salary
+    FROM employees E JOIN job_sal J
+    ON (E.salary BETWEEN J.job_losal AND J.job_hisal);
+    ```
+    - **Explanation**: This query retrieves employee names and their salary ranges, showing which employees fall within specified salary ranges defined in the `job_sal` table.
 
+### 5. Outer Joins
 
+Outer joins are used to include rows from one table even if there are no matching rows in the other table. This allows you to see unmatched records, which can be crucial for certain analytical queries.
+
+#### 5.1. Left Outer Join
+
+- **Definition**: A **left outer join** returns all rows from the left table and the matched rows from the right table. If there’s no match, the result is NULL from the right table.
+- **Use Case**: Useful for scenarios where you want to retain all records from the left table regardless of whether there's a match in the right table.
+- **Example**:
+    ```sql
+    SELECT E.first_name, D.department_name
+    FROM employees E LEFT OUTER JOIN departments D
+    ON E.department_id = D.department_id;
+    ```
+
+#### 5.2. Right Outer Join
+
+- **Definition**: A **right outer join** returns all rows from the right table and the matched rows from the left table. If there’s no match, the result is NULL from the left table.
+- **Use Case**: Useful when you want to retain all records from the right table regardless of matches in the left table.
+- **Example**:
+    ```sql
+    SELECT E.first_name, D.department_name
+    FROM employees E RIGHT OUTER JOIN departments D
+    ON E.department_id = D.department_id;
+    ```
+
+#### 5.3. Full Outer Join
+
+- **Definition**: A **full outer join** returns all records from both tables. Where there are no matches, NULLs will be present for the missing sides.
+- **Use Case**: Useful for complete datasets, providing a full view of records from both tables.
+- **Example**:
+    ```sql
+    SELECT E.first_name, D.department_name
+    FROM employees E FULL OUTER JOIN departments D
+    ON E.department_id = D.department_id;
+    ```
+
+### 6. Cartesian Product (Cross Join)
+
+- **Definition**: A **Cartesian product** or **cross join** produces a result set that is the combination of every row from the first table with every row from the second table.
+- **Use Case**: Rarely used, but can be useful in specific scenarios where you need all combinations of rows.
+- **Example**:
+    ```sql
+    SELECT E.first_name, D.department_name
+    FROM employees E, departments D;
+    ```
+- **Cross Join Syntax**:
+    ```sql
+    SELECT E.first_name, D.department_name
+    FROM employees E CROSS JOIN departments D;
+    ```
+
+### Conclusion
+
+Understanding the various types of joins in SQL is essential for effective data retrieval in relational databases. Joins allow you to connect data across multiple tables, facilitating complex queries that yield insightful results. Here’s a brief recap of the key points:
+
+1. **Natural Join**: Automatically joins based on matching column names.
+2. **Explicit Join with ON**: Allows for specific join conditions using the ON clause.
+3. **USING Clause**: Simplifies joins when column names are the same.
+4. **Self-Join**: Joins a table to itself for hierarchical data.
+5. **Non-Equijoins**: Allows joining based on ranges or inequalities.
+6. **Outer Joins**: Retains unmatched rows from one or both tables.
+7. **Cartesian Product**: Produces all possible row combinations between two tables.
+
+By mastering these concepts, you'll be able to manipulate and analyze data in relational databases more effectively, leading to better insights and decision-making capabilities.
+
+Bilkul! Yahan par SQL ke joins ka detail mein samarthan hai, jismein har ek join ke liye explanations, use cases aur examples diye gaye hain.
+
+## Multiple Tables Se Data Dikhana Joins Ke Saath
+
+Relational databases mein, data ko tables mein structure kiya jaata hai, jo ek dusre se **foreign keys** (ek table ke columns jo doosre table ke primary keys ko reference karte hain) ke through related hote hain. **Joins** SQL operations hain jo do ya zyada tables ke rows ko combine karte hain based on related columns, jisse aap un tables ke beech meaningful information retrieve kar sakte hain.
+
+### 1. Joins Ke Prakar
+
+#### 1.1. Natural Join
+
+- **Definition**: **Natural join** automatically do tables ko un columns ke basis par combine karta hai jinke names same hote hain aur unka data type compatible hota hai. Ye result set se duplicate columns ko effectively eliminate kar deta hai.
+- **Use Case**: Natural joins tab useful hote hain jab aapke paas common attributes wale tables hote hain, aur aap unhe un attributes ke basis par merge karna chahte hain bina explicitly join condition specify kiye.
+- **Example**:
+    ```sql
+    SELECT E.first_name AS NAME, D.department_name AS DNAME
+    FROM employees E NATURAL JOIN departments D;
+    ```
+    - **Output**:
+        ```
+        FIRST_NAME DNAME
+        ----------- ------
+        MILLER     DEPT 1
+        JOHN       DEPT 1
+        MARTIN     DEPT 2
+        EDWIN      DEPT 2
+        ```
+
+- **Limitations**:
+  - LOB (Large Object) columns ka use nahi kar sakte.
+  - Jo columns join mein involved hain, unhe table name ya alias se qualify nahi kar sakte.
+  
+#### 1.2. Explicit Join with ON Clause
+
+- **Definition**: Ek explicit join, jise aksar **inner join** kaha jaata hai, aapko join condition specify karne ki permission deta hai `ON` clause ka use karke, jismein aap clearly batate hain ki kaunse columns join hone hain.
+- **Use Case**: Ye tab beneficial hota hai jab aapko join conditions par zyada control chahiye, especially jab column names alag hote hain ya aap multiple columns par join karna chahte hain.
+- **Example**:
+    ```sql
+    SELECT E.first_name AS NAME, D.department_name AS DNAME
+    FROM employees E JOIN departments D
+    ON (E.department_id = D.department_id);
+    ```
+
+### 2. Using Clause
+
+- **Definition**: `USING` clause ka use aapko explicitly common column(s) specify karne ki permission deta hai jo join ke liye use hota hai.
+- **Use Case**: Jab join karne wale columns dono tables mein same naam ke hote hain, tab ye syntax ko simplify kar deta hai.
+- **Example**:
+    ```sql
+    SELECT E.first_name AS NAME, D.department_name AS DNAME
+    FROM employees E JOIN departments D
+    USING (department_id);
+    ```
+
+### 3. Self-Join
+
+- **Definition**: Ek **self-join** tab hota hai jab ek table ko khud se join kiya jaata hai. Ye ek single table ke andar hierarchical data query karne ke liye useful hota hai, jaise employee-manager relationships.
+- **Use Case**: Aapko data find karne ke liye jo same table ke andar related ho, jaise ki employees aur unke managers.
+- **Example**:
+    ```sql
+    SELECT e1.first_name AS Manager, e2.first_name AS Employee
+    FROM employees e1 JOIN employees e2
+    ON (e1.employee_id = e2.manager_id)
+    ORDER BY e2.manager_id DESC;
+    ```
+    - **Explanation**: Yahan, `e1` managers ko represent karta hai aur `e2` employees ko. Ye query har employee ko unke manager se match karti hai.
+
+### 4. Non-Equijoins
+
+- **Definition**: Ek **non-equality join** tab use hota hai jab joining condition comparison ki equality ke alawa hoti hai. Ye range ya kisi minimum ya maximum threshold ke against values check karne ke liye useful hota hai.
+- **Use Case**: Jaise salary ranges ko dikhana jahan employees kuch pay grades mein fall karte hain.
+- **Example**:
+    ```sql
+    SELECT E.first_name,
+           J.job_hisal,
+           J.job_losal,
+           E.salary
+    FROM employees E JOIN job_sal J
+    ON (E.salary BETWEEN J.job_losal AND J.job_hisal);
+    ```
+    - **Explanation**: Ye query employee names aur unke salary ranges ko retrieve karti hai, ye dikhate hue ki kaunse employees specified salary ranges mein hain.
+
+### 5. Outer Joins
+
+Outer joins ka use ek table se rows ko include karne ke liye kiya jaata hai chahe doosre table mein matching rows na ho. Ye unmatched records dekhne ke liye crucial ho sakta hai.
+
+#### 5.1. Left Outer Join
+
+- **Definition**: Ek **left outer join** left table se saari rows aur right table se matched rows ko return karta hai. Agar koi match nahi hota, toh right table se NULL result hota hai.
+- **Use Case**: Jab aap left table se saari records ko retain karna chahte hain chahe right table mein match ho ya nahi.
+- **Example**:
+    ```sql
+    SELECT E.first_name, D.department_name
+    FROM employees E LEFT OUTER JOIN departments D
+    ON E.department_id = D.department_id;
+    ```
+
+#### 5.2. Right Outer Join
+
+- **Definition**: Ek **right outer join** right table se saari rows aur left table se matched rows ko return karta hai. Agar koi match nahi hota, toh left table se NULL result hota hai.
+- **Use Case**: Jab aap right table se saari records ko retain karna chahte hain chahe left table mein match ho ya nahi.
+- **Example**:
+    ```sql
+    SELECT E.first_name, D.department_name
+    FROM employees E RIGHT OUTER JOIN departments D
+    ON E.department_id = D.department_id;
+    ```
+
+#### 5.3. Full Outer Join
+
+- **Definition**: Ek **full outer join** dono tables se saari records ko return karta hai. Jahan matches nahi hote, wahan NULLs present hote hain.
+- **Use Case**: Complete datasets ke liye useful, jo dono tables ka complete view provide karta hai.
+- **Example**:
+    ```sql
+    SELECT E.first_name, D.department_name
+    FROM employees E FULL OUTER JOIN departments D
+    ON E.department_id = D.department_id;
+    ```
+
+### 6. Cartesian Product (Cross Join)
+
+- **Definition**: Ek **Cartesian product** ya **cross join** result set produce karta hai jo pehle table ke har row ko doosre table ke har row ke saath combine karta hai.
+- **Use Case**: Ye aksar rare hota hai, lekin specific scenarios mein useful ho sakta hai jab aapko rows ke saare combinations chahiye hote hain.
+- **Example**:
+    ```sql
+    SELECT E.first_name, D.department_name
+    FROM employees E, departments D;
+    ```
+- **Cross Join Syntax**:
+    ```sql
+    SELECT E.first_name, D.department_name
+    FROM employees E CROSS JOIN departments D;
+    ```
+
+### Conclusion
+
+SQL mein various types of joins ko samajhna relational databases mein effective data retrieval ke liye zaroori hai. Joins aapko multiple tables ke data ko connect karne ki permission dete hain, jo complex queries ko facilitate karte hain jo insightful results deti hain. Yahan par key points ka chhota sa recap hai:
+
+1. **Natural Join**: Automatically matching column names ke basis par join karta hai.
+2. **Explicit Join with ON**: Specific join conditions ke liye `ON` clause ka use karta hai.
+3. **USING Clause**: Same naam wale columns ke liye joins ko simplify karta hai.
+4. **Self-Join**: Ek table ko khud se join karta hai hierarchical data ke liye.
+5. **Non-Equijoins**: Ranges ya inequalities ke basis par join karta hai.
+6. **Outer Joins**: Ek ya dono tables se unmatched rows ko retain karta hai.
+7. **Cartesian Product**: Do tables ke beech saare possible row combinations produce karta hai.
+
+In concepts ko master karke, aap relational databases mein data ko manipulate aur analyze karne mein zyada effectively kaam kar payenge, jo better insights aur decision-making capabilities tak le jaata hai.
+
+---
+---
+---
+
+# What is a Subquery?
+A subquery is a query nested within another query. It allows you to execute one query inside another, which simplifies data retrieval and manipulation, especially when dealing with complex conditions.
+
+#### Example:
+```sql
+SELECT first_name, salary
+FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees);
+```
+In this example, the outer query retrieves the first names and salaries of employees whose salaries are greater than the average salary. The inner query calculates the average salary.
+
+---
+
+### 2. Table Structure
+
+#### Employees Table
+
+| employee_id | first_name | last_name | salary | department_id |
+|-------------|------------|-----------|--------|---------------|
+| 1           | John       | Doe       | 6000   | 10            |
+| 2           | Jane       | Smith     | 7000   | 20            |
+| 3           | Jim        | Brown     | 4000   | 10            |
+| 4           | Jake       | White     | 5000   | 30            |
+| 5           | Jill       | Black     | 8000   | 20            |
+| 6           | Joe        | Green     | 3000   | 30            |
+
+#### Departments Table
+
+| department_id | department_name | location_id |
+|---------------|-----------------|-------------|
+| 10            | HR              | 100         |
+| 20            | Finance         | 200         |
+| 30            | IT              | 300         |
+
+---
+
+Subqueries can primarily be classified into four categories: **Single Row Subquery**, **Multiple Row Subquery**, **Correlated Subquery**, and **Multiple Column Subquery**. Let’s explore each one step by step.
+
+### 1. Single Row Subquery
+A Single Row Subquery is used when you need to return a single value to the outer query. It can return only one row, which may contain one or more columns. This type of subquery is typically used with comparison operators like `=`, `<`, `>`, `<=`, `>=`, etc.
+
+**Example:**
+```sql
+SELECT first_name, salary
+FROM employees
+WHERE salary = (SELECT MIN(salary) FROM employees);
+```
+**Explanation:**
+- **Inner Query:** `(SELECT MIN(salary) FROM employees)` returns the minimum salary.
+- **Outer Query:** Retrieves the first names and salaries of employees with the minimum salary.
+
+**Result:**
+
+| first_name | salary |
+|------------|--------|
+| Jim        | 4000   |
+
+**Use Case:** This type of subquery is useful when you want to check against a single value, such as minimum or maximum values.
+
+### 2. Multiple Row Subquery
+A Multiple Row Subquery is used when you need to return multiple rows to the outer query. This type of subquery is used in the `WHERE` or `HAVING` clauses. When you want to check against multiple rows, you need to use set comparison operators like `IN`, `ANY`, or `ALL`.
+
+**Example:**
+```sql
+SELECT first_name, department_id
+FROM employees
+WHERE department_id IN (SELECT department_id FROM departments WHERE location_id = 100);
+```
+**Explanation:**
+- **Inner Query:** `(SELECT department_id FROM departments WHERE location_id = 100)` returns the department IDs located at location ID 100.
+- **Outer Query:** Retrieves the first names and department IDs of employees in those departments.
+
+**Result:**
+
+| first_name | department_id |
+|------------|---------------|
+| John       | 10            |
+| Jim        | 10            |
+
+**Use Case:** This type of subquery is useful when you want to check against a set of values, such as matching against a specific list.
+
+**Error Example:**
+If you mistakenly use a single-row subquery where multiple rows are expected, you will get an error:
+```sql
+SELECT first_name, department_id
+FROM employees
+WHERE department_id = (SELECT department_id FROM employees WHERE location_id = 100);
+```
+**Error Explanation:** If the inner query returns multiple department IDs, you will get an error: `ORA-01427: single-row subquery returns more than one row`.
+
+### 3. Correlated Subquery
+A Correlated Subquery means that the inner query depends on the outer query's results. The inner query is executed repeatedly for each row selected by the outer query. This type of subquery helps solve complex problems, such as department-wise comparisons.
+
+**Example:**
+```sql
+SELECT employee_id, salary, department_id
+FROM employees E
+WHERE salary > (SELECT AVG(salary) FROM employees T WHERE E.department_id = T.department_id);
+```
+**Explanation:**
+- **Inner Query:** `(SELECT AVG(salary) FROM employees T WHERE E.department_id = T.department_id)` calculates the average salary for each department.
+- **Outer Query:** Returns employees whose salaries are higher than their department's average salary.
+
+**Result:**
+
+| employee_id | salary | department_id |
+|-------------|--------|---------------|
+| 2           | 7000   | 20            |
+| 5           | 8000   | 20            |
+
+**Use Case:** This type of subquery is useful when you need to perform calculations for each row related to the rows from the outer query. It is flexible but can impact performance.
+
+### 4. Multiple Column Subquery
+A Multiple Column Subquery can return multiple columns. It can be used in the `FROM`, `WHERE`, or `HAVING` clauses of the outer query. You need to specify which columns will be returned.
+
+**Example:**
+```sql
+SELECT first_name, job_id, salary
+FROM emp_history
+WHERE (salary, department_id) IN (
+    SELECT salary, department_id
+    FROM employees
+    WHERE salary BETWEEN 1000 AND 2000
+    AND department_id BETWEEN 10 AND 20);
+```
+**Explanation:**
+- **Inner Query:** Filters employees with salaries between 1000 and 2000 and department IDs between 10 and 20.
+- **Outer Query:** Returns the first names, job IDs, and salaries of employees who meet these conditions.
+
+**Result:**
+
+| first_name | job_id | salary |
+|------------|--------|--------|
+| John       | IT01   | 1500   |
+| Jim        | IT02   | 1200   |
+
+**Use Case:** This type of subquery is useful when you need to match multiple criteria and require multiple columns.
+
+---
+
+# Subqueries in SQL(Hinglish)
+
+Subqueries SQL ke important feature hain jo complex queries ko likhne mein madad karte hain. Ye ek query ke andar dusri query ko execute karne ki suvidha dete hain, jisse data retrieval aur manipulation easier ho jata hai. Chaliye, subqueries ke concepts ko samajhne ke liye detailed examples aur tables ka istemal karte hain.
+
+### 1. Subquery Kya Hai?
+Subquery ek query hoti hai jo dusri query ke andar hoti hai. Iska istemal data retrieval ko simplify karne aur complex conditions ko handle karne ke liye kiya jata hai.
+
+#### Example:
+```sql
+SELECT first_name, salary
+FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees);
+```
+Yahaan, outer query un employees ke first names aur salaries ko retrieve karti hai jinki salary average salary se zyada hai. Inner query average salary calculate karti hai.
+
+---
+
+### 2. Tables ki Structure
+
+#### Employees Table
+
+| employee_id | first_name | last_name | salary | department_id |
+|-------------|------------|-----------|--------|---------------|
+| 1           | John       | Doe       | 6000   | 10            |
+| 2           | Jane       | Smith     | 7000   | 20            |
+| 3           | Jim        | Brown     | 4000   | 10            |
+| 4           | Jake       | White     | 5000   | 30            |
+| 5           | Jill       | Black     | 8000   | 20            |
+| 6           | Joe        | Green     | 3000   | 30            |
+
+#### Departments Table
+
+| department_id | department_name | location_id |
+|---------------|-----------------|-------------|
+| 10            | HR              | 100         |
+| 20            | Finance         | 200         |
+| 30            | IT              | 300         |
+
+---
+
+Subqueries ko primarily char categories mein classify kiya ja sakta hai: **Single Row Subquery**, **Multiple Row Subquery**, **Correlated Subquery**, aur **Multiple Column Subquery**. Aayiye inhe step-by-step explore karte hain.
+
+### 1. Single Row Subquery
+Single Row Subquery tab use hoti hai jab aapko outer query ko ek single value dena hota hai. Ye subquery sirf ek row return kar sakti hai, jo ek ya zyada columns mein ho sakti hai. Iska istemal comparison operators jaise `=`, `<`, `>`, `<=`, `>=`, etc. ke saath hota hai.
+
+**Example:**
+```sql
+SELECT first_name, salary
+FROM employees
+WHERE salary = (SELECT MIN(salary) FROM employees);
+```
+**Explanation:**
+- **Inner Query:** `(SELECT MIN(salary) FROM employees)` minimum salary ko return karta hai.
+- **Outer Query:** Minimum salary wale employees ke first names aur salaries ko retrieve karta hai.
+
+**Result:**
+
+| first_name | salary |
+|------------|--------|
+| Jim        | 4000   |
+
+**Use Case:** Ye type ki subquery ka istemal tab hota hai jab aapko kisi single value ke against check karna hota hai, jaise minimum ya maximum value, kisi condition ke liye.
+
+### 2. Multiple Row Subquery
+Multiple Row Subquery tab use hoti hai jab aapko outer query ko multiple rows ka result dena hota hai. Iska istemal WHERE ya HAVING clauses mein hota hai. Jab aapko multiple rows ka result chahiye hota hai, toh aapko set comparison operators jaise `IN`, `ANY`, ya `ALL` ka istemal karna padta hai.
+
+**Example:**
+```sql
+SELECT first_name, department_id
+FROM employees
+WHERE department_id IN (SELECT department_id FROM departments WHERE location_id = 100);
+```
+**Explanation:**
+- **Inner Query:** `(SELECT department_id FROM departments WHERE location_id = 100)` wo department IDs return karta hai jo location ID 100 par hain.
+- **Outer Query:** Un department IDs wale employees ke first names aur department IDs ko retrieve karta hai.
+
+**Result:**
+
+| first_name | department_id |
+|------------|---------------|
+| John       | 10            |
+| Jim        | 10            |
+
+**Use Case:** Ye type ki subquery ka istemal tab hota hai jab aapko kisi set of values ke against check karna hota hai, jaise kisi specific list mein matching karna.
+
+**Error Example:**
+Agar aap single-row subquery ko aise use karte hain jahan wo multiple rows return kare, toh error aata hai:
+```sql
+SELECT first_name, department_id
+FROM employees
+WHERE department_id = (SELECT department_id FROM employees WHERE location_id = 100);
+```
+**Error Explanation:** Agar inner query multiple department IDs return karti hai, toh aapko error milega: `ORA-01427: single-row subquery returns more than one row`.
+
+### 3. Correlated Subquery
+Correlated Subquery ka matlab hai ki inner query outer query ke results par depend karti hai. Ye inner query ko baar-baar execute karti hai, har row ke liye jo outer query se select ki gayi hai. Is type ki subquery complex problems ko solve karne mein madad karti hai, jaise department-wise comparisons.
+
+**Example:**
+```sql
+SELECT employee_id, salary, department_id
+FROM employees E
+WHERE salary > (SELECT AVG(salary) FROM employees T WHERE E.department_id = T.department_id);
+```
+**Explanation:**
+- **Inner Query:** `(SELECT AVG(salary) FROM employees T WHERE E.department_id = T.department_id)` har department ke liye average salary ko calculate karta hai.
+- **Outer Query:** Un employees ko return karta hai jinki salary unke department ki average salary se zyada hai.
+
+**Result:**
+
+| employee_id | salary | department_id |
+|-------------|--------|---------------|
+| 2           | 7000   | 20            |
+| 5           | 8000   | 20            |
+
+**Use Case:** Ye type ki subquery ka istemal tab hota hai jab aapko har row ke liye calculations karne hote hain jo outer query ki rows se related hote hain. Ye bahut flexible hoti hai, lekin performance par impact daal sakti hai.
+
+### 4. Multiple Column Subquery
+Multiple Column Subquery ek se zyada columns return karne ki capability rakhti hai. Ye outer query ke FROM, WHERE, ya HAVING clause mein use hoti hai. Isme, aapko specify karna padta hai ki kaunse columns return hone wale hain.
+
+**Example:**
+```sql
+SELECT first_name, job_id, salary
+FROM emp_history
+WHERE (salary, department_id) IN (
+    SELECT salary, department_id
+    FROM employees
+    WHERE salary BETWEEN 1000 AND 2000
+    AND department_id BETWEEN 10 AND 20);
+```
+**Explanation:**
+- **Inner Query:** Employees ko filter karta hai jinki salary 1000 se 2000 ke beech hai aur department ID 10 se 20 ke beech hai.
+- **Outer Query:** Un employees ke first names aur salaries ko return karta hai jo is condition ko meet karte hain.
+
+**Result:**
+
+| first_name | job_id | salary |
+|------------|--------|--------|
+| John       | IT01   | 1500   |
+| Jim        | IT02   | 1200   |
+
+**Use Case:** Ye type ki subquery ka istemal tab hota hai jab aapko multiple criteria ko match karna hota hai, jahan aapko multiple columns ki zarurat hoti hai.
+
+---
+---
+---
+
+# What Are SET Operators?
+SET operators in SQL are special operators used to combine the results of two or more queries. They allow you to work with multiple result sets as if they were a single set. The main SET operators include **UNION**, **UNION ALL**, **INTERSECT**, and **MINUS**.
+
+#### Employees Table
+
+| employee_id | first_name | last_name | salary | department_id |
+|-------------|------------|-----------|--------|---------------|
+| 1           | John       | Doe       | 6000   | 10            |
+| 2           | Jane       | Smith     | 7000   | 20            |
+| 3           | Jim        | Brown     | 4000   | 10            |
+| 4           | Jake       | White     | 5000   | 30            |
+| 5           | Jill       | Black     | 8000   | 20            |
+| 6           | Joe        | Green     | 3000   | 30            |
+
+### 2. Details of Operators
+
+#### 1. UNION
+The **UNION** operator combines the results of two queries, removing any duplicate rows. This means that if the two queries return the same row, it will only appear once in the result.
+
+**Example:**
+```sql
+SELECT first_name FROM employees
+UNION
+SELECT first_name FROM customers;
+```
+**Explanation:**
+- **First Query:** Selects the first names from the employees table.
+- **Second Query:** Selects the first names from the customers table.
+- **Result:** Returns unique first names combined from both tables.
+
+**Result Table:**
+
+| first_name |
+|------------|
+| John       |
+| Jane       |
+| Jim        |
+| Jill       |
+
+**Use Case:** This type of operator is useful when you want to combine similar data from different sources and do not want duplicates.
+
+---
+
+#### 2. UNION ALL
+The **UNION ALL** operator also combines the results of two queries, but it does not remove duplicates. If the same row appears in both queries, it will be included in the result set multiple times.
+
+**Example:**
+```sql
+SELECT first_name FROM employees
+UNION ALL
+SELECT first_name FROM customers;
+```
+**Explanation:**
+- **First Query:** Selects the first names from the employees table.
+- **Second Query:** Selects the first names from the customers table.
+- **Result:** Includes all first names from both tables, including duplicates.
+
+**Result Table:**
+
+| first_name |
+|------------|
+| John       |
+| Jane       |
+| Jim        |
+| Jill       |
+| John       |  (if John is also a customer)
+
+**Use Case:** This operator is used when you want the complete result set, including duplicates.
+
+---
+
+#### 3. INTERSECT
+The **INTERSECT** operator returns only the rows that are common to both queries. This means it selects only those rows that exist in the result set of both queries.
+
+**Example:**
+```sql
+SELECT first_name FROM employees
+INTERSECT
+SELECT first_name FROM customers;
+```
+**Explanation:**
+- **First Query:** Selects the first names from the employees table.
+- **Second Query:** Selects the first names from the customers table.
+- **Result:** Returns the first names that are present in both tables.
+
+**Result Table:**
+
+| first_name |
+|------------|
+| John       |  (if John is both an employee and a customer)
+| Jane       |  (if Jane is both an employee and a customer)
+
+**Use Case:** This operator is useful when you need to retrieve common data from both tables.
+
+---
+
+#### 4. MINUS
+The **MINUS** operator subtracts the results of the second query from the first query. It returns the rows from the first query that are not present in the second query.
+
+**Example:**
+```sql
+SELECT first_name FROM employees
+MINUS
+SELECT first_name FROM customers;
+```
+**Explanation:**
+- **First Query:** Selects the first names from the employees table.
+- **Second Query:** Selects the first names from the customers table.
+- **Result:** Returns the first names of employees that are not in the customers table.
+
+**Result Table:**
+
+| first_name |
+|------------|
+| Jim        |  (if Jim is an employee but not a customer)
+| Jill       |  (if Jill is an employee but not a customer)
+
+**Use Case:** This operator is useful when you want to find records that exist in one table but not in another.
+
+Certainly! SET operators in SQL are used to combine the results of two or more queries. They allow you to work with multiple result sets as if they were a single set. Here’s a detailed explanation of the different types of SET operators: **UNION**, **UNION ALL**, **INTERSECT**, and **MINUS**.
+
+# SET Operators Kya Hain?
+SET operators SQL mein queries ke results ko combine karne ke liye use kiye jaate hain. Ye operators aapko do ya do se zyada queries ke results ko ek saath dekhne ki suvidha dete hain.
+
+### 2. Operators Ki Details
+
+#### 1. UNION
+**UNION** operator ka istemal do queries ke results ko combine karne ke liye kiya jaata hai, lekin ye duplicate rows ko remove kar deta hai. Iska matlab hai ki agar do queries ka result mein same row hai, toh wo sirf ek baar hi result mein aayega.
+
+**Example:**
+```sql
+SELECT first_name FROM employees
+UNION
+SELECT first_name FROM customers;
+```
+**Explanation:**
+- **First Query:** Employees table se first names ko select karta hai.
+- **Second Query:** Customers table se first names ko select karta hai.
+- **Result:** Unique first names dono tables se combine karke return kiye jaate hain.
+
+**Result Table:**
+
+| first_name |
+|------------|
+| John       |
+| Jane       |
+| Jim        |
+| Jill       |
+
+**Use Case:** Jab aapko different sources se similar type ke data ko combine karna hota hai aur duplicates nahi chahiye hote.
+
+---
+
+#### 2. UNION ALL
+**UNION ALL** bhi do queries ke results ko combine karta hai, lekin ye duplicates ko remove nahi karta. Matlab, agar do queries mein same row hai, toh wo dono baar result mein aayega.
+
+**Example:**
+```sql
+SELECT first_name FROM employees
+UNION ALL
+SELECT first_name FROM customers;
+```
+**Explanation:**
+- **First Query:** Employees table se first names ko select karta hai.
+- **Second Query:** Customers table se first names ko select karta hai.
+- **Result:** Saare first names dono tables se include kiye jaate hain, bina duplicates ke remove kiye.
+
+**Result Table:**
+
+| first_name |
+|------------|
+| John       |
+| Jane       |
+| Jim        |
+| Jill       |
+| John       |  (if John is also a customer)
+
+**Use Case:** Jab aapko complete result chahiye ho, including duplicates.
+
+---
+
+#### 3. INTERSECT
+**INTERSECT** operator do queries ke beech common rows ko return karta hai. Iska matlab hai ki ye sirf un rows ko select karta hai jo dono queries ke results mein maujood hain.
+
+**Example:**
+```sql
+SELECT first_name FROM employees
+INTERSECT
+SELECT first_name FROM customers;
+```
+**Explanation:**
+- **First Query:** Employees table se first names ko select karta hai.
+- **Second Query:** Customers table se first names ko select karta hai.
+- **Result:** Wo first names return kiye jaate hain jo dono tables mein hain.
+
+**Result Table:**
+
+| first_name |
+|------------|
+| John       |  (if John is both an employee and a customer)
+| Jane       |  (if Jane is both an employee and a customer)
+
+**Use Case:** Jab aapko dono tables ke common data ko retrieve karna hota hai.
+
+---
+
+#### 4. MINUS
+**MINUS** operator pehli query se dusri query ke results ko minus karta hai. Ye pehli query ki wo rows return karta hai jo dusri query mein nahi hain.
+
+**Example:**
+```sql
+SELECT first_name FROM employees
+MINUS
+SELECT first_name FROM customers;
+```
+**Explanation:**
+- **First Query:** Employees table se first names ko select karta hai.
+- **Second Query:** Customers table se first names ko select karta hai.
+- **Result:** Employees ke first names return kiye jaate hain jo customers ke first names mein nahi hain.
+
+**Result Table:**
+
+| first_name |
+|------------|
+| Jim        |  (if Jim is an employee but not a customer)
+| Jill       |  (if Jill is an employee but not a customer)
+
+**Use Case:** Jab aapko aise records chahiye hote hain jo ek table mein hain lekin dusre table mein nahi hain.
+
+---
 

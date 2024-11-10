@@ -1,4 +1,3 @@
-
 <h1 style="text-align: center;">Unit 2</h1>
 
 ## Unstructured Text Analysis and Chatbot development
